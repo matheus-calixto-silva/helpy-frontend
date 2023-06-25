@@ -19,3 +19,15 @@ export interface Skills {
   skill: Skill;
   _id:   string;
 }
+export interface User {
+  firstname:  string;
+  lastname:   string;
+  username:   string;
+  email:      string;
+  phone:      string;
+  profilePic: string;
+  skills:     Skills[];
+  created_at: Date;
+  updated_at: Date;
+  id:         string;
+}
