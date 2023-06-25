@@ -15,3 +15,7 @@ export interface Skill {
   category: Category;
   id: string;
 }
+export interface Skills {
+  skill: Skill;
+  _id:   string;
+}
