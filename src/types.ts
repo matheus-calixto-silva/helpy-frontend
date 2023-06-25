@@ -9,3 +9,9 @@ export interface Category {
   description: string;
   id: string;
 }
+
+export interface Skill {
+  name: string;
+  category: Category;
+  id: string;
+}
