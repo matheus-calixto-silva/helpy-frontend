@@ -36,3 +36,7 @@ export interface IContext extends IUser {
   handleLogin: (username: string, password: string) => Promise<void>;
   handleLogout: () => void
 }
+
+export interface IAuthProvider {
+  children: JSX.Element;
+}
