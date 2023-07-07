@@ -1,15 +1,8 @@
-export interface UserCredentials {
-  token: string;
-  id: string;
-  username: string;
-  role: string;
-}
 export interface Category {
   name: string;
   description: string;
   id: string;
 }
-
 export interface Skill {
   name: string;
   category: Category;
@@ -30,4 +23,11 @@ export interface User {
   created_at: Date;
   updated_at: Date;
   id:         string;
+}
+
+export interface IUser {
+  username?: string;
+  password?: string;
+  token?: string;
+  role?: string;
 }
