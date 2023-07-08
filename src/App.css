@@ -1,42 +1,94 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+  --red-normal: #E03258;
+  --red-light: #FF7280;
+  --red-dark: #D53646;
+  --white-normal: #F7F9FC;
+  --white-light: #F8FAFD;
+  --white-dark: #D8DADD;
+  --black-normal: #0F141F;
+  --black-light: #2F333D;
+  --black-dark: #070A10;
+  --gray-1: #131414;
+  --gray-2: #2B2B2C;
+  --gray-3: #424344;
+  --gray-4: #595A5C;
+  --gray-5: #717274;
+  --gray-6: #888A8C;
+  --gray-7: #9EA0A3;
+  --gradient-g-0: linear-gradient(225deg, #FF7280 0%, #E03258 99.99%, #E03258 100%);
+  --gradient-g-1: linear-gradient(225deg, #E03258 0%, #D53646 100%);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+html {
+  /* 62.5% of 16px browser font size is 10px */
+  font-size: 62.5%;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+body {
+  background-color: var(--white-normal);
+  color: var(--black-normal);
+  font-family: 'Roboto', sans-serif;
 }
 
-.card {
-  padding: 2em;
+.h1 {
+  font-size: 9.6rem;
+  font-family: 'Be Vietnam Pro';
+  line-height: 90%;
 }
 
-.read-the-docs {
-  color: #888;
+.h2 {
+  font-size: 6.4rem;
+  font-family: 'Be Vietnam Pro';
+  line-height: 115%;
+}
+
+.h3 {
+  font-size: 4.8rem;
+  font-family: 'Be Vietnam Pro';
+  line-height: 110%;
+}
+
+.h4 {
+  font-size: 3.6rem;
+  font-family: 'Be Vietnam Pro';
+  line-height: 120%;
+}
+
+.h5 {
+  font-size: 2.4rem;
+  font-family: 'Be Vietnam Pro';
+  line-height: 130%;
+}
+
+.h6 {
+  font-size: 1.8rem;
+  font-family: 'Be Vietnam Pro';
+  line-height: 140%;
+}
+
+.b1 {
+  font-size: 2.4rem;
+  font-family: Roboto;
+  line-height: 130%;
+}
+
+.b2 {
+  font-size: 1.8rem;
+  font-family: Roboto;
+  line-height: 140%;
+}
+
+.b3 {
+  font-size: 1.6rem;
+  font-family: Roboto;
+  line-height: 150%;
 }
