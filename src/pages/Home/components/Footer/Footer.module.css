@@ -1,0 +1,54 @@
+.footer {
+  padding: 6rem 4rem;
+  background: var(--red-normal);
+  color: var(--white-normal);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.brand h4 {
+  margin-top: 1rem;
+}
+
+.logo {
+  width: 7rem;
+  height: 7rem;
+  margin-right: 1rem;
+}
+
+.logo, .socialIcon {
+  user-select: none;
+}
+
+.contact {
+  margin-bottom: 1rem;
+}
+
+.contact span {
+  color: var(--white-dark);
+}
+
+.social {
+  display: flex;
+  align-items: center;
+}
+
+.social a{
+  text-decoration: none;
+}
+
+.socialIcon {
+  margin-right: 1rem;
+}
+
+.address span {
+  color: var(--white-dark);
+}
