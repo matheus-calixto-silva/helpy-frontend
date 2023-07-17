@@ -15,10 +15,19 @@
   margin-bottom: 2rem;
 }
 
-.hero_content a {
-  text-decoration: none;
+.hero a {
   color: var(--red-normal);
+  border: 2px solid var(--white-normal);
+  padding: .4rem .6rem;
+  border-radius: .2rem;
+  text-decoration: none;
   user-select: none;
+  transition: .1s;
+}
+
+.hero a:hover {
+  border: 2px solid var(--red-normal);
+  color: var(--red-dark);
 }
 
 .hero_image_wrapper {
@@ -29,4 +38,5 @@
   width: 100%;
   max-width: 600px;
   height: auto;
+  border-radius: 8px;
 }
