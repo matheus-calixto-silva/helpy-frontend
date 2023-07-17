@@ -40,3 +40,19 @@
   height: auto;
   border-radius: 8px;
 }
+
+/*---- MOBILE ----- */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  .hero_content {
+    text-align: center;
+  }
+
+  .hero_image_wrapper {
+    margin-top: 2rem;
+  }
+}
