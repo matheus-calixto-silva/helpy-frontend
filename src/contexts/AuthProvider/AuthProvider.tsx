@@ -2,12 +2,13 @@ import { createContext, useEffect, useState } from 'react';
 import { IAuthProvider, IContext, IUser } from '../../types';
 import { getUserLocalStorage, loginRequest, removeUserLocalStorage, setUserLocalStorage } from './util';
 
-import history from '../../history';
+import useNavigation from '../../navigate';
 
 export const AuthContext = createContext<IContext>({} as IContext);
 
 export const AuthProvider = ({ children }: IAuthProvider) => {
   const [user, setUser] = useState<IUser | null>();
+  const navigate = useNavigation();
 
   useEffect(() => {
     const user = getUserLocalStorage();
@@ -23,17 +24,18 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
 
     setUser(response);
     setUserLocalStorage(response);
-    history.push('/profile');
+    navigate('/profile');
   }
 
   function handleLogout() {
     setUser(null);
     removeUserLocalStorage();
+    navigate('/');
   }
 
   return (
     <AuthContext.Provider value={{ ...user, handleLogin, handleLogout }}>
       {children}
-    </AuthContext.Provider >
+    </AuthContext.Provider>
   );
 };
