@@ -52,3 +52,23 @@
   z-index: -1;
   border-radius: 0 .8rem .8rem 0;
 }
+
+/*---- MOBILE ----- */
+@media (max-width: 768px) {
+  .about {
+    flex-direction: column;
+    padding: 2rem;
+  }
+
+  .about_content {
+    text-align: center;
+  }
+
+  .about_image_wrapper {
+    margin-top: 2rem;
+  }
+
+  .background_red {
+    display: none;
+  }
+}
