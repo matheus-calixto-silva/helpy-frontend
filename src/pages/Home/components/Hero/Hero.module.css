@@ -44,7 +44,7 @@
 /*---- MOBILE ----- */
 @media (max-width: 768px) {
   .hero {
-    flex-direction: column;
+    flex-direction: column-reverse;
     padding: 2rem;
   }
 
