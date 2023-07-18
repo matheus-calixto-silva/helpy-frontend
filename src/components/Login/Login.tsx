@@ -23,7 +23,7 @@ const Login = () => {
 
   return (
     <div>
-      <h2 className={`h2 ${styles.title}`}>Login</h2>
+      <h2 className={styles.title}>Login</h2>
       <form className={styles.form} onSubmit={handleLogin}>
         <div>
           <input
