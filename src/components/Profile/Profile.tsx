@@ -1,6 +1,12 @@
+import { useAuth } from '../../contexts/AuthProvider/useAuth';
 
 const Profile = () => {
-  return (<h1 className='h1'>User profile</h1>);
+  const auth = useAuth();
+  return (
+    <div>
+      <h1>User profile</h1>
+      <button onClick={auth.handleLogout}>logout</button>
+    </div>);
 };
 
 export default Profile;
