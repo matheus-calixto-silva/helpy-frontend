@@ -1,0 +1,48 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background-color: var(--red-normal);
+  color: var(--white-normal);
+}
+
+.logo {
+  width: 3.5rem;
+  height: 3.5rem;
+  user-select: none;
+}
+
+.buttons button {
+  margin-left: 1rem;
+}
+
+.button_primary {
+  border-radius: .4rem;
+  background: var(--white-normal);
+  color: var(--black-normal);
+  padding: .4rem .8rem;
+  font-size: 1.6rem;
+  border: 2px solid var(--white-normal);
+  cursor: pointer;
+  transition: .1s;
+}
+
+.button_primary:hover {
+  background: var(--white-dark);
+  border: 2px solid var(--white-dark);
+}
+
+.button_secondary {
+  border-radius: .4rem;
+  background: none;
+  color: var(--white-normal);
+  border: 2px solid var(--red-normal);
+  padding: .4rem .8rem;
+  cursor: pointer;
+  transition: .1s;
+}
+
+.button_secondary:hover {
+  border: 2px solid var(--white-normal);
+}
