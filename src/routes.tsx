@@ -6,6 +6,7 @@ import Home from './pages/Home/Home';
 import Login from './components/Login/Login';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import User from './components/User/User';
+import NotFound from './components/NotFound/NotFound';
 
 const AppRoutes = () => {
   return (
@@ -15,6 +16,7 @@ const AppRoutes = () => {
           <Route path='/' element={<ProtectedRoute><User /></ProtectedRoute>} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
