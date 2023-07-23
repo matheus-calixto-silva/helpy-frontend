@@ -1,9 +1,19 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { useAuth } from '../../contexts/AuthProvider/useAuth';
 
 const ProtectedLayout = ({ children }: { children: JSX.Element }) => {
-  const auth = useAuth();
+  const { token, username } = useAuth();
+  const navigate = useNavigate();
 
-  if (!auth.username) {
+  useEffect(() => {
+    if (!token) {
+      return navigate('/home');
+    }
+  }, [token]);
+
+  if (!username) {
     return <h1>You don&lsquo;t have access</h1>;
   }
 
