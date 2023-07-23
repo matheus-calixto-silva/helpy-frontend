@@ -15,6 +15,11 @@ const getById = async (id: string) => {
   return request.data;
 };
 
+const getAllEvents = async () => {
+  const request = await axios.get(`${baseUrl}/events/all`, config);
+  return request.data;
+};
+
 const update = async (id: string, newObject: User) => {
   const request = await axios.put(`${baseUrl}/${id}`, newObject, config);
   return request.data;
@@ -23,5 +28,6 @@ const update = async (id: string, newObject: User) => {
 export default {
   update,
   getById,
+  getAllEvents,
   setToken,
 };
