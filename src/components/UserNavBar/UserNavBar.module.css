@@ -1,0 +1,52 @@
+.header {
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+.logo img {
+  height: 4rem; /* Altura do logo, ajuste conforme necessário */
+}
+
+.header .content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header nav {
+  display: block;
+}
+
+.header nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header nav li {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.header nav li:first-child {
+  margin-left: 0;
+}
+
+.header nav li a {
+  color: #333;
+  text-decoration: none;
+}
+
+.header .profile {
+  margin-left: 2rem;
+}
+
+.header .profile img {
+  height: 5rem; /* Altura da foto de perfil, ajuste conforme necessário */
+  width: 5rem;
+  border-radius: 50%;
+  border: 2px solid var(--black-normal);
+}
