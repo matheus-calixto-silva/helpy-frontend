@@ -1,0 +1,40 @@
+import axios from 'axios';
+import { Ong, Event } from '../types';
+
+const baseUrl = 'http://localhost:3001';
+
+const config = {
+  headers: { Authorization: '' },
+};
+
+const setToken = (newToken: string) => {
+  config.headers.Authorization = `bearer ${newToken}`;
+};
+
+const getById = async (id: string) => {
+  const request = await axios.get(`${baseUrl}/ongs/${id}`, config);
+  return request.data;
+};
+
+const getEventsByOng = async (id: string) => {
+  const request = await axios.get(`${baseUrl}/ongs/${id}/events`, config);
+  return request.data;
+};
+
+const createOngEvent = async (id: string, Obj: Event) => {
+  const request = await axios.patch(`${baseUrl}/ongs/${id}/events`, Obj, config);
+  return request.data;
+};
+
+const update = async (id: string, newObject: Ong) => {
+  const request = await axios.put(`${baseUrl}/ongs/${id}`, newObject, config);
+  return request.data;
+};
+
+export default {
+  update,
+  getById,
+  getEventsByOng,
+  createOngEvent,
+  setToken,
+};
