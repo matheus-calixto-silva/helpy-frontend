@@ -1,6 +1,15 @@
 import { createContext, useEffect, useState } from 'react';
+
 import { IAuthProvider, IContext, IUser } from '../../types';
-import { getUserLocalStorage, loginRequest, removeUserLocalStorage, setUserLocalStorage } from './util';
+
+import {
+  getUserLocalStorage,
+  loginRequest,
+  removeUserLocalStorage,
+  setUserLocalStorage,
+  addTokenByUserType,
+  removeTokenByUserType
+} from './util';
 
 import useNavigation from '../../navigate';
 
@@ -15,6 +24,8 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
 
     if (user) {
       setUser(user);
+      addTokenByUserType(user.role, user.token);
+      navigate('/conta');
     }
 
   }, []);
@@ -23,14 +34,16 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
     const response = await loginRequest(username, password);
 
     setUser(response);
+    addTokenByUserType(response.role, response.token);
     setUserLocalStorage(response);
-    navigate('/profile');
+    navigate('/conta');
   }
 
   function handleLogout() {
     setUser(null);
+    if (user?.role) removeTokenByUserType(user.role);
     removeUserLocalStorage();
-    navigate('/');
+    navigate('/login');
   }
 
   return (
