@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Ong, Event } from '../types';
+import { Ong } from '../types';
 
 const baseUrl = 'http://localhost:3001';
 
@@ -21,7 +21,7 @@ const getEventsByOng = async (id: string) => {
   return request.data;
 };
 
-const createOngEvent = async (id: string, Obj: Event) => {
+const createOngEvent = async (id: string, Obj: FormData) => {
   const request = await axios.patch(`${baseUrl}/ongs/${id}/events`, Obj, config);
   return request.data;
 };
