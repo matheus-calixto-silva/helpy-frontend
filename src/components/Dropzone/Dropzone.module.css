@@ -1,0 +1,36 @@
+.dropzone {
+  height: 30rem;
+  background: var(--red-light);
+  border-radius: 1rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: 0;
+}
+
+.dropzone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dropzone p {
+  width: calc(100% - 6rem);
+  height: calc(100% - 6rem);
+  border-radius: 1rem;
+  border: .1rem dashed var(--red-dark);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--white-normal);
+}
+
+.dropzone p svg {
+  color: var(--red-dark);
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: .8rem;
+}
