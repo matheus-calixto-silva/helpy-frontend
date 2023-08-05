@@ -9,6 +9,7 @@ import Volunteer from '../Volunteer/Volunteer';
 import NotFound from '../NotFound/NotFound';
 import MyEvents from '../MyEvents/MyEvents';
 import CreateEvent from '../CreateEvent/CreateEvent';
+import EventDetails from '../EventDetails/EventDetails';
 
 const Profile = () => {
   const auth = useAuth();
@@ -21,11 +22,11 @@ const Profile = () => {
           <Route path='/' element={<Ong />} />
           <Route path='/criar-evento' element={<CreateEvent />} />
           <Route path='/meus-eventos' element={<MyEvents />} />
+          <Route path='/meus-eventos/:eventId' element={<EventDetails />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       )}
       {auth.role === 'admin' && <Admin />}
-      <button onClick={auth.handleLogout}>logout</button>
     </section>
   );
 };
