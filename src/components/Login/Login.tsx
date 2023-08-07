@@ -1,11 +1,14 @@
 import { FormEvent, useState } from 'react';
-
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthProvider/useAuth';
 
 import Input from '../Input/Input';
 import Button from '../Button/Button';
+import useCheckMobileScreen from '../../hooks/useCheckMobileScreen';
 
 import LoginImg from '../../assets/login.jpg';
+import ArrowRed from '../../assets/arrow-left-red.svg';
+import ArrowWhite from '../../assets/arrow-left-white.svg';
 
 import styles from './Login.module.css';
 
@@ -67,6 +70,16 @@ const Login = () => {
           </p>
         </div>
       </div>
+      {useCheckMobileScreen()
+        ?
+        <Link className={styles.arrow} to={'/home'}>
+          <img src={ArrowRed} alt='icone de seta' />
+        </Link>
+        :
+        <Link className={styles.arrow} to={'/home'}>
+          <img src={ArrowWhite} alt='icone de seta' />
+        </Link>
+      }
     </section>
   );
 };
