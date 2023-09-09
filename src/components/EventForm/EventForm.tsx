@@ -23,9 +23,9 @@ import useNavigation from '../../navigate';
 
 import { Skill } from '../../types';
 
-import styles from './CreateEvent.module.css';
+import styles from './EventForm.module.css';
 
-const CreateEvent = () => {
+const EventForm = () => {
   const { id, token } = useAuth();
   const navigate = useNavigation();
 
@@ -309,4 +309,4 @@ const CreateEvent = () => {
   );
 };
 
-export default CreateEvent;
+export default EventForm;

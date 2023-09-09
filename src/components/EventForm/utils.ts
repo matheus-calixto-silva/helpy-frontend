@@ -1,7 +1,6 @@
 import ibge from '../../services/ibge';
 import skillService from '../../services/skills';
 
-
 import { City, Uf } from '../../types';
 
 export const fetchUfData = async () => {
