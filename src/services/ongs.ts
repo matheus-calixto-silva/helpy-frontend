@@ -26,6 +26,11 @@ const getEventById = async (ongId: string, eventId: string) => {
   return request.data;
 };
 
+const updateOngEvent = async (idOng: string, idEvent: string, newObject: FormData) => {
+  const request = await axios.patch(`${baseUrl}/ongs/${idOng}/events/${idEvent}`, newObject, config);
+  return request.data;
+};
+
 const createOngEvent = async (id: string, Obj: FormData) => {
   const request = await axios.patch(`${baseUrl}/ongs/${id}/events`, Obj, config);
   return request.data;
@@ -49,5 +54,6 @@ export default {
   getEventById,
   createOngEvent,
   setToken,
+  updateOngEvent,
   removeOngEvent
 };
