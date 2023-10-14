@@ -21,8 +21,8 @@ const getEventsByOng = async (id: string) => {
   return request.data;
 };
 
-const getEventById = async (eventId: string) => {
-  const request = await axios.get(`${baseUrl}/events/${eventId}`, config);
+const getEventById = async (ongId: string, eventId: string) => {
+  const request = await axios.get(`${baseUrl}/ongs/${ongId}/events/${eventId}`, config);
   return request.data;
 };
 
@@ -37,9 +37,10 @@ const update = async (id: string, newObject: Ong) => {
 };
 
 const removeOngEvent = async (idOng: string, idEvent: string) => {
-  const request = await axios.patch(`${baseUrl}/ongs/${idOng}/events/${idEvent}`, {} ,config);
+  const request = await axios.patch(`${baseUrl}/ongs/${idOng}/events/${idEvent}`, {}, config);
   return request.data;
 };
+
 
 export default {
   update,
