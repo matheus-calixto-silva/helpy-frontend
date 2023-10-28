@@ -13,7 +13,7 @@ const AppRoutes = () => {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route path='/' element={<ProtectedRoute><User /></ProtectedRoute>} />
+          <Route path='/conta/*' element={<ProtectedRoute><User /></ProtectedRoute>} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path='*' element={<NotFound />} />
