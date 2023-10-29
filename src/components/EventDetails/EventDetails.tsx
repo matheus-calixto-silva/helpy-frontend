@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 import ongService from '../../services/ongs';
 
-import { Event } from '../../types';
+import useNavigation from '../../navigate';
 
 import styles from './EventDetails.module.css';
+
+import { Event } from '../../types';
 
 const EventDetails = () => {
   const [event, setEvent] = useState<Event>();
   const routeParams = useParams();
   const eventId = routeParams.eventId;
+  const ong = JSON.parse(localStorage.getItem('user') || '');
+  const navigate = useNavigation();
 
   useEffect(() => {
     (async () => {
-      const event = await ongService.getEventById(eventId!);
+      const event = await ongService.getEventById(ong?.id, eventId!);
       setEvent(event);
     })();
   }, []);
@@ -24,6 +28,16 @@ const EventDetails = () => {
     const formattedDate = inputDate.toLocaleDateString('en-GB');
 
     return formattedDate;
+  }
+
+  async function removeEvent (event: Event) {
+    const confirm = window.confirm(`Você tem certeza que deseja excluir o evento:\n ${event.name}?`);
+    if (confirm && event._id) {
+      await ongService.removeOngEvent(ong.id, event._id, 'delete');
+      navigate('/conta/meus-eventos');
+    }else {
+      window.alert('Operação cancelada');
+    }
   }
 
   return (
@@ -44,8 +58,10 @@ const EventDetails = () => {
               </ul>
             </div>
             <div className={styles.options}>
-              <button className={styles.button_edit}>Editar</button>
-              <button className={styles.button_delete}>Excluir</button>
+              <Link to={`/conta/editar-evento/${eventId}`}>
+                <button className={styles.button_edit}>Editar</button>
+              </Link>
+              <button onClick={() => removeEvent(event)} className={styles.button_delete}>Excluir</button>
             </div>
           </div>
         </section>
