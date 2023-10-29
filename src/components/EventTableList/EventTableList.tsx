@@ -43,7 +43,7 @@ const EventTableList = () => {
   }
 
   async function removeEvent(idOng: string, idEvent: string) {
-    await ongService.removeOngEvent(idOng, idEvent);
+    await ongService.removeOngEvent(idOng, idEvent, 'delete');
     setEvents(events.filter(event => event._id !== idEvent));
   }
 
@@ -66,8 +66,8 @@ const EventTableList = () => {
             <td>{formateSkills(item.requiredSkills)}</td>
             <td>{item.volunteers.length}/{item.maxVolunteers}</td>
             <td>
-              <Link to={`/conta/meus-eventos/${item._id}`}><button>Ver Detalhes</button></Link>
-              <button onClick={() => removeEvent(id!, item._id!)}>Excluir evento</button>
+              <Link to={`/conta/meus-eventos/${item._id}`}>Ver detalhes</Link>
+              <a onClick={() => removeEvent(id!, item._id!)}>Excluir evento</a>
             </td>
           </tr>
         ))}

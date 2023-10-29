@@ -17,8 +17,27 @@
   align-items: center;
 }
 
-.event_table tr td:last-child button:last-child {
+.event_table tr td:last-child a {
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--black-normal);
+  padding: 0.2rem 0.8rem;
+}
+
+.event_table tr td:last-child a:hover {
+  color: var(--black-dark);
+}
+
+.event_table tr td:last-child a:last-child {
+  color: var(--red-dark);
   margin-top: .5rem;
+  padding: 0.2rem 0.8rem;
+  transition: 0.2s;
+}
+
+.event_table tr td:last-child a:last-child:hover {
+  color: var(--white-normal);
+  background-color: var(--red-normal);
 }
 
 @media (max-width: 768px) {
