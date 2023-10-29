@@ -26,8 +26,8 @@ const getEventById = async (ongId: string, eventId: string) => {
   return request.data;
 };
 
-const updateOngEvent = async (idOng: string, idEvent: string, newObject: FormData) => {
-  const request = await axios.patch(`${baseUrl}/ongs/${idOng}/events/${idEvent}`, newObject, config);
+const updateOngEvent = async (idOng: string, idEvent: string, newObject: FormData, action: 'update' | 'delete') => {
+  const request = await axios.patch(`${baseUrl}/ongs/${idOng}/events/${idEvent}/${action}`, newObject, config);
   return request.data;
 };
 
@@ -41,8 +41,8 @@ const update = async (id: string, newObject: Ong) => {
   return request.data;
 };
 
-const removeOngEvent = async (idOng: string, idEvent: string) => {
-  const request = await axios.patch(`${baseUrl}/ongs/${idOng}/events/${idEvent}`, {}, config);
+const removeOngEvent = async (idOng: string, idEvent: string, action: 'update' | 'delete') => {
+  const request = await axios.patch(`${baseUrl}/ongs/${idOng}/events/${idEvent}/${action}`, {}, config);
   return request.data;
 };
 
