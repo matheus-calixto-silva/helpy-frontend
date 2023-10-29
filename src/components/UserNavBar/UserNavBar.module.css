@@ -7,7 +7,7 @@
 }
 
 .logo img {
-  height: 4rem; /* Altura do logo, ajuste conforme necessário */
+  height: 4rem;
 }
 
 .header .content {
@@ -45,7 +45,7 @@
 }
 
 .header .profile img {
-  height: 5rem; /* Altura da foto de perfil, ajuste conforme necessário */
+  height: 5rem;
   width: 5rem;
   border-radius: 50%;
   border: 2px solid var(--black-normal);
@@ -61,7 +61,7 @@
   z-index: 1;
   top: 0;
   right: 0;
-  background-color: #111;
+  background-color: var(--red-normal);
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -71,13 +71,13 @@
   padding: .8rem .8rem .8rem 3.2rem;
   text-decoration: none;
   font-size: 2.5rem;
-  color: #818181;
+  color: var(--white-normal);
   display: block;
   transition: 0.3s;
 }
 
 .sidenav a:hover {
-  color: #f1f1f1;
+  color: var(--white-dark);
 }
 
 .sidenav .closebtn {

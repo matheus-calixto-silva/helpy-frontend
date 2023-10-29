@@ -16,7 +16,7 @@ type UserType = User | Ong | Admin;
 
 const UserNavBar = () => {
   const [user, setUser] = useState<UserType>();
-  const { id, role } = useAuth();
+  const { id, role, handleLogout } = useAuth();
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -38,32 +38,76 @@ const UserNavBar = () => {
     fetchUserData();
   }, [role]);
 
-  return (
-    <header className={styles.header}>
+  function openNav() {
+    const sideNav = document.getElementById('mySidenav');
+    if (sideNav) {
+      sideNav.style.width = '250px';
+    }
+  }
+
+  function closeNav() {
+    const sideNav = document.getElementById('mySidenav');
+    if (sideNav) {
+      sideNav.style.width = '0';
+    }
+  }
+
+  const NavBarLogo = () => {
+    return (
       <div className={styles.logo}>
-        <img src={NavLogo} alt="Logo" />
+        <Link to='/conta'>
+          <img src={NavLogo} alt="Logo" />
+        </Link>
       </div>
-      <div className={styles.content}>
-        {
-          role === 'ong' &&
-          (
-            <nav>
-              <ul>
-                <li className='b3'>
-                  <Link to={'/conta/meus-eventos'}>Meus Eventos</Link>
-                </li>
-                <li className='b3'>
-                  <Link to='/conta/criar-evento'>Criar Evento</Link>
-                </li>
-              </ul>
-            </nav>
-          )
-        }
-        <div className={styles.profile}>
-          {user && <img src={`http://localhost:3001/uploads/${user?.profilePic}`} alt="Foto de Perfil" />}
+    );
+  };
+
+  const NavBarOngsUrls = () => {
+    return (
+      <nav>
+        <ul>
+          <li className='b3'>
+            <Link to={'/conta/meus-eventos'}>Meus Eventos</Link>
+          </li>
+          <li className='b3'>
+            <Link to='/conta/criar-evento'>Criar Evento</Link>
+          </li>
+        </ul>
+      </nav>
+    );
+  };
+
+  const NavBarProfilePic = () => {
+    return (
+      <div className={styles.profile} onClick={openNav}>
+        {user && <img src={`http://localhost:3001/uploads/${user?.profilePic}`} alt="Foto de Perfil" />}
+      </div>
+    );
+  };
+
+  const NavBarSideNav = () => {
+    return (
+      <div id="mySidenav" className={styles.sidenav}>
+        <a className="closebtn" onClick={closeNav}>&times;</a>
+        <a>Meu Perfil</a>
+        <a onClick={handleLogout}>Sair</a>
+      </div>
+    );
+  };
+
+  return (
+    <>
+      <header className={styles.header}>
+        <NavBarLogo />
+        <div className={styles.content}>
+          {
+            role === 'ong' && <NavBarOngsUrls />
+          }
+          <NavBarProfilePic />
         </div>
-      </div>
-    </header>
+      </header>
+      <NavBarSideNav />
+    </>
   );
 };
 
