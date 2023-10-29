@@ -13,6 +13,11 @@ const Ong = () => {
   const { id, role } = useAuth();
   const [events, setEvents] = useState<Event[]>();
   const [event, setEvent] = useState<Event>();
+  let totalVolunteers = 0;
+
+  const countAllEventVolunteers = (events: Event[]) => {
+    events.map(event => totalVolunteers += event?.volunteers.length);
+  };
 
   const fetchData = async () => {
     const response = (id && role === 'ong') && await ongService.getEventsByOng(id);
@@ -21,7 +26,9 @@ const Ong = () => {
       const currentDate = new Date();
       let closestEvent = response[0];
 
-      response.forEach((event: Event) => {  
+      countAllEventVolunteers(response);
+
+      response.map((event: Event) => {  
         const eventDate = new Date(event.date);
         if (eventDate >= currentDate) {
           closestEvent = event;
@@ -46,7 +53,7 @@ const Ong = () => {
           </div>
           <div className={styles.side_data_item}>
             <h5>Total de voluntários</h5>
-            <p>128</p>
+            <p>{totalVolunteers}</p>
           </div>
         </div>
         <div id="closestEventContainer">
