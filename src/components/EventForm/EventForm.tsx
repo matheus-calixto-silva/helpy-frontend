@@ -24,10 +24,14 @@ import useNavigation from '../../navigate';
 import { Skill } from '../../types';
 
 import styles from './EventForm.module.css';
+import { useParams } from 'react-router-dom';
 
 const EventForm = () => {
   const { id, token } = useAuth();
   const navigate = useNavigation();
+  const routeParams = useParams();
+  const eventId = routeParams.eventId;
+  const path = window.location.pathname;
 
   const [ufs, setUfs] = useState<string[]>([]);
   const [cities, setCities] = useState<string[]>([]);
@@ -45,6 +49,42 @@ const EventForm = () => {
     maxVolunteers: '',
     street: ''
   });
+
+  useEffect(() => {
+    if (path === `/conta/editar-evento/${eventId}` && (eventId && id)) {
+      const getData = async () => {
+        const data = await ongService.getEventById(id, eventId);
+        setFormData({ ...formData, name: data.name, description: data.description, maxVolunteers: data.maxVolunteers, street: data.address.street });
+        setSelectedUf(data.address.uf);
+        setSelectedCity(data.address.city);
+        setSelectedDate(new Date(data.date));
+        setSelectedSkills(data.requiredSkills);
+
+        const eventPic = data.eventPic;
+        if (eventPic) {
+          const response = await fetch(`http://localhost:3001/uploads/${eventPic}`);
+          const blob = await response.blob();
+          const selectedFile = new File([blob], eventPic);
+          setSelectedFile(selectedFile);
+        }
+
+      };
+      getData();
+    } else {
+      setSelectedSkills([]);
+      setSelectedUf('0');
+      setSelectedCity('0');
+      setSelectedDate(null);
+      setSelectedFile(undefined);
+
+      setFormData({
+        name: '',
+        description: '',
+        maxVolunteers: '',
+        street: ''
+      });
+    }
+  }, [path]);
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -153,22 +193,28 @@ const EventForm = () => {
       data.append('date', date.toISOString());
     }
 
-    if (id) {
+    if (eventId && id) {
+      try {
+        await ongService.updateOngEvent(id, eventId, data, 'update');
+        navigate('/conta/meus-eventos');
+      } catch (error) {
+        console.log('Error:', error);
+      }
+    } else if (id) {
       try {
         await ongService.createOngEvent(id, data);
         navigate('/conta/meus-eventos');
       } catch (error) {
         console.log('Error:', error);
       }
-    } else {
-      console.log('Error: Missing ID');
     }
   }
+
 
   return (
     <form className={styles.create_event} onSubmit={handleSubmit}>
       <h1>
-        Cadastro de evento
+        {eventId ? 'Atualizar' : 'Cadastro de'} evento
       </h1>
 
       <fieldset>
@@ -183,6 +229,7 @@ const EventForm = () => {
             name="name"
             id="name"
             onChange={handleInputChange}
+            value={formData.name}
           />
         </div>
 
@@ -193,6 +240,7 @@ const EventForm = () => {
             name="maxVolunteers"
             id="maxVolunteers"
             onChange={handleInputChange}
+            value={formData.maxVolunteers}
           />
         </div>
 
@@ -229,12 +277,13 @@ const EventForm = () => {
             name="description"
             id="description"
             onChange={handleInputChange}
+            value={formData.description}
           />
         </div>
 
         <div className={styles.field}>
           <label htmlFor="photo">Adicione uma foto do Evento</label>
-          <Dropzone onFileUploaded={setSelectedFile} />
+          <Dropzone onFileUploaded={setSelectedFile}/>
         </div>
       </fieldset>
 
@@ -250,6 +299,7 @@ const EventForm = () => {
             name="street"
             id="street"
             onChange={handleInputChange}
+            value={formData.street}
           />
         </div>
 
@@ -303,7 +353,7 @@ const EventForm = () => {
         </div>
       </fieldset>
       <div className={styles.button_container}>
-        <Button className={styles.button} type="submit">Cadastrar evento</Button>
+        <Button className={styles.button} type="submit">{eventId ? 'Atualizar' : 'Cadastrar'} evento</Button>
       </div>
     </form >
   );
