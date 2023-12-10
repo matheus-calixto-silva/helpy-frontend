@@ -1,7 +1,12 @@
 .hero {
+  padding: 4rem;
+}
+
+.container {
   display: flex;
   align-items: center;
-  padding: 4rem;
+  max-width: 136.6rem;
+  margin: 0 auto;
 }
 
 .hero_content {
