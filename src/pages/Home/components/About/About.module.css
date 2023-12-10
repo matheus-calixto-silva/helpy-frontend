@@ -1,5 +1,7 @@
 .container {
-  position: relative;
+  max-width: 136.6rem;
+  margin: 0 auto;
+  position: relative
 }
 
 .about {
