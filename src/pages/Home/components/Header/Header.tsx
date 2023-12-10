@@ -13,12 +13,14 @@ const HomeHeader = () => {
 
   return (
     <nav className={styles.navbar}>
-      <div>
-        <img className={styles.logo} src={Logo} alt="Helpy logo" />
-      </div>
-      <div className={styles.buttons}>
-        <button className={`b3 ${styles.button_primary}`} onClick={handleClick}>Entrar</button>
-        <button className={`b3 ${styles.button_secondary}`}>Cadastre-se</button>
+      <div className={styles.container}>
+        <div>
+          <img className={styles.logo} src={Logo} alt="Helpy logo" />
+        </div>
+        <div className={styles.buttons}>
+          <button className={`b3 ${styles.button_primary}`} onClick={handleClick}>Entrar</button>
+          <button className={`b3 ${styles.button_secondary}`}>Cadastre-se</button>
+        </div>
       </div>
     </nav>
   );
