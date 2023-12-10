@@ -5,6 +5,8 @@
 }
 
 .footer_content {
+  max-width: 136.6rem;
+  margin: 0 auto;
   padding: 6rem 4rem;
   display: flex;
   align-items: flex-start;
@@ -61,6 +63,11 @@
   padding: 2rem 4rem;
   width: 100%;
   text-align: center;
+}
+
+.copy hr {
+  max-width: 136.6rem;
+  margin: 0 auto;
 }
 
 .copy p {
