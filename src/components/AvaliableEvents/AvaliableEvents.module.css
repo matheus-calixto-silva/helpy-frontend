@@ -1,0 +1,7 @@
+.carousel {
+  cursor: grab;
+}
+
+.inner {
+  display: flex;
+}
