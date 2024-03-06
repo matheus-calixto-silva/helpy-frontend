@@ -21,6 +21,16 @@ const getAllEvents = async () => {
   return request.data;
 };
 
+const getAvaliableEvent = async (eventId: string) => {
+  const request = await axios.get(`${baseUrl}/users/events/${eventId}`, config);
+  return request.data;
+};
+
+const joinEvent = async (userId: string, eventId: string) => {
+  const request = await axios.patch(`${baseUrl}/users/${userId}/events/${eventId}`, {}, config);
+  return request.data;
+};
+
 const update = async (id: string, newObject: User) => {
   const request = await axios.put(`${baseUrl}/users/${id}`, newObject, config);
   return request.data;
@@ -30,5 +40,7 @@ export default {
   update,
   getById,
   getAllEvents,
+  getAvaliableEvent,
+  joinEvent,
   setToken,
 };
