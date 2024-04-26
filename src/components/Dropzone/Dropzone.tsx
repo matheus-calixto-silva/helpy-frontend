@@ -1,13 +1,13 @@
-import { FC, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 
 import styles from './Dropzone.module.css';
 
-interface Props {
+interface IProps {
   onFileUploaded: (file: File) => void;
 }
 
-const Dropzone: FC<Props> = ({ onFileUploaded }) => {
+const Dropzone = ({ onFileUploaded }: IProps) => {
   const [selectedFileUrl, setSelectedFileUrl] = useState('');
 
   const onDrop = useCallback(
@@ -32,10 +32,10 @@ const Dropzone: FC<Props> = ({ onFileUploaded }) => {
 
   return (
     <div className={styles.dropzone} {...getRootProps()}>
-      <input {...getInputProps()} name='photo' accept="image/*" />
+      <input {...getInputProps()} name='photo' accept='image/*' />
 
       {selectedFileUrl ? (
-        <img src={selectedFileUrl} alt="Event thumbnail" />
+        <img src={selectedFileUrl} alt='Event thumbnail' />
       ) : (
         <p className='b3'>Adicione uma imagem do evento</p>
       )}
