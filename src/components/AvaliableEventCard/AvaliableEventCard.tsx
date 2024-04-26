@@ -4,11 +4,10 @@ import { Event } from '../../types';
 
 import styles from './AvaliableEventCard.module.css';
 
-import LocationIcon from '../../assets/location - filled.svg';
 import ClockIcon from '../../assets/clock - filled.svg';
+import LocationIcon from '../../assets/location - filled.svg';
 
 const AvaliableEventCard = ({ event }: { event: Event }) => {
-  console.log(event)
   const eventDate = new Date(event.date);
   const day = formateDate(eventDate).substring(0, 2);
   const month = eventDate.toLocaleDateString('pt-BR', {
