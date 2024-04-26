@@ -11,13 +11,12 @@ import {
   setUserLocalStorage,
 } from './util';
 
-import useNavigation from '../../navigate';
+import { navigate } from '../../libs/navigate';
 
 export const AuthContext = createContext<IContext>({} as IContext);
 
 export const AuthProvider = ({ children }: IAuthProvider) => {
   const [user, setUser] = useState<IUser | null>();
-  const navigate = useNavigation();
 
   useEffect(() => {
     const user = getUserLocalStorage();

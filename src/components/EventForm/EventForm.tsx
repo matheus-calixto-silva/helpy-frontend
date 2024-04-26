@@ -1,34 +1,33 @@
-import { ChangeEvent, useState, useEffect, FormEvent } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
-import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
 
 import MultiSelect from 'multiselect-react-dropdown';
 
-import DatePicker, { registerLocale } from 'react-datepicker';
 import pt from 'date-fns/locale/pt-BR';
+import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 registerLocale('pt-BR', pt);
 
-import Dropzone from '../Dropzone/Dropzone';
 import Button from '../Button/Button';
+import Dropzone from '../Dropzone/Dropzone';
 
 import { useAuth } from '../../contexts/AuthProvider/useAuth';
 
-import { fetchUfData, fetchCityData, fetchSkills } from './utils';
+import { fetchCityData, fetchSkills, fetchUfData } from './utils';
 
 import ongService from '../../services/ongs';
 
-import useNavigation from '../../navigate';
+import { navigate } from '../../libs/navigate';
 
 import { Skill } from '../../types';
 
-import styles from './EventForm.module.css';
 import { useParams } from 'react-router-dom';
+import styles from './EventForm.module.css';
 
 const EventForm = () => {
   const { id, token } = useAuth();
-  const navigate = useNavigation();
   const routeParams = useParams();
   const eventId = routeParams.eventId;
   const path = window.location.pathname;
@@ -47,14 +46,20 @@ const EventForm = () => {
     name: '',
     description: '',
     maxVolunteers: '',
-    street: ''
+    street: '',
   });
 
   useEffect(() => {
-    if (path === `/conta/editar-evento/${eventId}` && (eventId && id)) {
+    if (path === `/conta/editar-evento/${eventId}` && eventId && id) {
       const getData = async () => {
         const data = await ongService.getEventById(id, eventId);
-        setFormData({ ...formData, name: data.name, description: data.description, maxVolunteers: data.maxVolunteers, street: data.address.street });
+        setFormData({
+          ...formData,
+          name: data.name,
+          description: data.description,
+          maxVolunteers: data.maxVolunteers,
+          street: data.address.street,
+        });
         setSelectedUf(data.address.uf);
         setSelectedCity(data.address.city);
         setSelectedDate(new Date(data.date));
@@ -62,12 +67,13 @@ const EventForm = () => {
 
         const eventPic = data.eventPic;
         if (eventPic) {
-          const response = await fetch(`http://localhost:3001/uploads/${eventPic}`);
+          const response = await fetch(
+            `http://localhost:3001/uploads/${eventPic}`
+          );
           const blob = await response.blob();
           const selectedFile = new File([blob], eventPic);
           setSelectedFile(selectedFile);
         }
-
       };
       getData();
     } else {
@@ -81,7 +87,7 @@ const EventForm = () => {
         name: '',
         description: '',
         maxVolunteers: '',
-        street: ''
+        street: '',
       });
     }
   }, [path]);
@@ -170,7 +176,7 @@ const EventForm = () => {
     const date = selectedDate;
     const uf = selectedUf;
     const city = selectedCity;
-    const skills = selectedSkills.map(skill => skill._id).join();
+    const skills = selectedSkills.map((skill) => skill._id).join();
     const photo = selectedFile;
 
     const data = new FormData();
@@ -210,12 +216,9 @@ const EventForm = () => {
     }
   }
 
-
   return (
     <form className={styles.create_event} onSubmit={handleSubmit}>
-      <h1>
-        {eventId ? 'Atualizar' : 'Cadastro de'} evento
-      </h1>
+      <h1>{eventId ? 'Atualizar' : 'Cadastro de'} evento</h1>
 
       <fieldset>
         <legend>
@@ -223,45 +226,45 @@ const EventForm = () => {
         </legend>
 
         <div className={styles.field}>
-          <label htmlFor="name">Nome do evento</label>
+          <label htmlFor='name'>Nome do evento</label>
           <input
-            type="text"
-            name="name"
-            id="name"
+            type='text'
+            name='name'
+            id='name'
             onChange={handleInputChange}
             value={formData.name}
           />
         </div>
 
         <div className={styles.field}>
-          <label htmlFor="maxVolunteers">Número de Voluntários</label>
+          <label htmlFor='maxVolunteers'>Número de Voluntários</label>
           <input
-            type="number"
-            name="maxVolunteers"
-            id="maxVolunteers"
+            type='number'
+            name='maxVolunteers'
+            id='maxVolunteers'
             onChange={handleInputChange}
             value={formData.maxVolunteers}
           />
         </div>
 
         <div className={styles.field}>
-          <label htmlFor="date">Data</label>
+          <label htmlFor='date'>Data</label>
           <DatePicker
             name='date'
             id='date'
             selected={selectedDate}
             onChange={handleDateChange}
-            locale="pt-BR"
-            dateFormat="dd/MM/yyyy"
+            locale='pt-BR'
+            dateFormat='dd/MM/yyyy'
             className={styles['custom-datepicker']}
           />
         </div>
 
         <div className={styles.field}>
-          <label htmlFor="skills">Habilidades</label>
+          <label htmlFor='skills'>Habilidades</label>
           <MultiSelect
             id='skills'
-            displayValue="name"
+            displayValue='name'
             options={skills}
             selectedValues={selectedSkills}
             onSelect={handleSelect}
@@ -271,19 +274,19 @@ const EventForm = () => {
         </div>
 
         <div className={styles.field}>
-          <label htmlFor="description">Descrição</label>
+          <label htmlFor='description'>Descrição</label>
           <input
-            type="textarea"
-            name="description"
-            id="description"
+            type='textarea'
+            name='description'
+            id='description'
             onChange={handleInputChange}
             value={formData.description}
           />
         </div>
 
         <div className={styles.field}>
-          <label htmlFor="photo">Adicione uma foto do Evento</label>
-          <Dropzone onFileUploaded={setSelectedFile}/>
+          <label htmlFor='photo'>Adicione uma foto do Evento</label>
+          <Dropzone onFileUploaded={setSelectedFile} />
         </div>
       </fieldset>
 
@@ -293,11 +296,11 @@ const EventForm = () => {
         </legend>
 
         <div className={styles.field}>
-          <label htmlFor="street">Logradouro</label>
+          <label htmlFor='street'>Logradouro</label>
           <input
-            type="text"
-            name="street"
-            id="street"
+            type='text'
+            name='street'
+            id='street'
             onChange={handleInputChange}
             value={formData.street}
           />
@@ -305,14 +308,14 @@ const EventForm = () => {
 
         <div className={styles.field_group}>
           <div className={styles.field}>
-            <label htmlFor="uf">Estado (UF)</label>
+            <label htmlFor='uf'>Estado (UF)</label>
             <select
-              name="uf"
-              id="uf"
+              name='uf'
+              id='uf'
               value={selectedUf}
               onChange={handleSelectUf}
             >
-              <option value="0">Selecione uma UF</option>
+              <option value='0'>Selecione uma UF</option>
               {ufs.map((uf) => (
                 <option key={uf} value={uf}>
                   {uf}
@@ -322,14 +325,14 @@ const EventForm = () => {
           </div>
 
           <div className={styles.field}>
-            <label htmlFor="city">Cidade</label>
+            <label htmlFor='city'>Cidade</label>
             <select
-              name="city"
-              id="city"
+              name='city'
+              id='city'
               value={selectedCity}
               onChange={handleSelectCity}
             >
-              <option value="0">Selecione uma Cidade</option>
+              <option value='0'>Selecione uma Cidade</option>
               {cities.map((city) => (
                 <option key={city} value={city}>
                   {city}
@@ -340,12 +343,18 @@ const EventForm = () => {
         </div>
 
         <div className={styles.field}>
-          <label htmlFor="map">Clique no mapa para marcar um ponto de referência</label>
+          <label htmlFor='map'>
+            Clique no mapa para marcar um ponto de referência
+          </label>
           {mapPosition[0] !== 0 && (
-            <MapContainer style={{ height: '45rem', width: '100%' }} center={mapPosition} zoom={30}>
+            <MapContainer
+              style={{ height: '45rem', width: '100%' }}
+              center={mapPosition}
+              zoom={30}
+            >
               <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
               />
               <Markers mapPosition={mapPosition} />
             </MapContainer>
@@ -353,9 +362,11 @@ const EventForm = () => {
         </div>
       </fieldset>
       <div className={styles.button_container}>
-        <Button className={styles.button} type="submit">{eventId ? 'Atualizar' : 'Cadastrar'} evento</Button>
+        <Button className={styles.button} type='submit'>
+          {eventId ? 'Atualizar' : 'Cadastrar'} evento
+        </Button>
       </div>
-    </form >
+    </form>
   );
 };
 

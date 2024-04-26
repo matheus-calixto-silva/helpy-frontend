@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import ongService from '../../services/ongs';
 
-import useNavigation from '../../navigate';
+import { navigate } from '../../libs/navigate';
 
 import styles from './EventDetails.module.css';
 
@@ -14,7 +14,6 @@ const EventDetails = () => {
   const routeParams = useParams();
   const eventId = routeParams.eventId;
   const ong = JSON.parse(localStorage.getItem('user') || '');
-  const navigate = useNavigation();
 
   useEffect(() => {
     (async () => {
@@ -30,12 +29,14 @@ const EventDetails = () => {
     return formattedDate;
   }
 
-  async function removeEvent (event: Event) {
-    const confirm = window.confirm(`Você tem certeza que deseja excluir o evento:\n ${event.name}?`);
+  async function removeEvent(event: Event) {
+    const confirm = window.confirm(
+      `Você tem certeza que deseja excluir o evento:\n ${event.name}?`
+    );
     if (confirm && event._id) {
       await ongService.removeOngEvent(ong.id, event._id, 'delete');
       navigate('/conta/meus-eventos');
-    }else {
+    } else {
       window.alert('Operação cancelada');
     }
   }
@@ -44,7 +45,12 @@ const EventDetails = () => {
     <>
       {event && (
         <section className={styles.event}>
-          <div className={styles.image_wrapper} style={{ backgroundImage: `url(http://localhost:3001/uploads/${event.eventPic})` }}></div>
+          <div
+            className={styles.image_wrapper}
+            style={{
+              backgroundImage: `url(http://localhost:3001/uploads/${event.eventPic})`,
+            }}
+          ></div>
           <div className={styles.info}>
             <h2>{event.name}</h2>
             <h6>{formateDate(event.date)}</h6>
@@ -61,12 +67,16 @@ const EventDetails = () => {
               <Link to={`/conta/editar-evento/${eventId}`}>
                 <button className={styles.button_edit}>Editar</button>
               </Link>
-              <button onClick={() => removeEvent(event)} className={styles.button_delete}>Excluir</button>
+              <button
+                onClick={() => removeEvent(event)}
+                className={styles.button_delete}
+              >
+                Excluir
+              </button>
             </div>
           </div>
         </section>
-      )
-      }
+      )}
     </>
   );
 };

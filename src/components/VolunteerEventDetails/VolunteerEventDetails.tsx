@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import userService from '../../services/users';
 
-import useNavigation from '../../navigate';
+import { navigate } from '../../libs/navigate';
 
 import styles from './VolunteerEventDetails.module.css';
 
@@ -14,7 +14,6 @@ const VolunteerEventDetails = () => {
   const routeParams = useParams();
   const eventId = routeParams.eventId;
   const volunteer = JSON.parse(localStorage.getItem('user') || '');
-  const navigate = useNavigation();
 
   useEffect(() => {
     (async () => {
@@ -31,7 +30,7 @@ const VolunteerEventDetails = () => {
   }
 
   async function registerVolunteer() {
-    if ((volunteer.token && volunteer.id) && eventId) {
+    if (volunteer.token && volunteer.id && eventId) {
       await userService.joinEvent(volunteer.id, eventId);
       navigate('/conta');
     }
@@ -41,7 +40,12 @@ const VolunteerEventDetails = () => {
     <>
       {event && (
         <section className={styles.event}>
-          <div className={styles.image_wrapper} style={{ backgroundImage: `url(http://localhost:3001/uploads/${event.eventPic})` }}></div>
+          <div
+            className={styles.image_wrapper}
+            style={{
+              backgroundImage: `url(http://localhost:3001/uploads/${event.eventPic})`,
+            }}
+          ></div>
           <div className={styles.info}>
             <h2>{event.name}</h2>
             <h6>{formateDate(event.date)}</h6>
@@ -57,28 +61,36 @@ const VolunteerEventDetails = () => {
             <div className={styles.skills}>
               <h6>Endereço</h6>
               <p className='b3'>{event.address.street}</p>
-              <p className='b3'>{event.address.city} - {event.address.uf}</p>
+              <p className='b3'>
+                {event.address.city} - {event.address.uf}
+              </p>
             </div>
             <div className={styles.skills}>
               <h6>Voluntários</h6>
-              {event.volunteers.length === 0 && <p className='b3'>Nenhum voluntário registrado</p>}
-              {event.volunteers.length > 0 &&
-                (
-                  <ul className='b3'>
-                    {event.volunteers.map((volunteer, index) => (
-                      <li key={index}>{volunteer.firstname} {volunteer.lastname}</li>
-                    ))}
-                  </ul>
-                )}
-
+              {event.volunteers.length === 0 && (
+                <p className='b3'>Nenhum voluntário registrado</p>
+              )}
+              {event.volunteers.length > 0 && (
+                <ul className='b3'>
+                  {event.volunteers.map((volunteer, index) => (
+                    <li key={index}>
+                      {volunteer.firstname} {volunteer.lastname}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
             <div className={styles.options}>
-              <button onClick={() => registerVolunteer()} className={styles.button_delete}>Participar do Evento</button>
+              <button
+                onClick={() => registerVolunteer()}
+                className={styles.button_delete}
+              >
+                Participar do Evento
+              </button>
             </div>
           </div>
         </section>
-      )
-      }
+      )}
     </>
   );
 };
