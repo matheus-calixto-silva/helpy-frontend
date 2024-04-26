@@ -6,7 +6,8 @@ const Admin = () => {
     <div>
       <h1>Admin</h1>
       <button onClick={auth.handleLogout}>logout</button>
-    </div>);
+    </div>
+  );
 };
 
 export default Admin;

@@ -1,16 +1,14 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import NavLogo from '../../assets/logo-red.svg';
 import { useAuth } from '../../contexts/AuthProvider/useAuth';
-
-import userService from '../../services/users';
-import ongService from '../../services/ongs';
 import adminService from '../../services/admins';
-
+import ongService from '../../services/ongs';
+import userService from '../../services/users';
 import { User, Ong, Admin } from '../../types';
 
 import styles from './UserNavBar.module.css';
-
-import NavLogo from '../../assets/logo-red.svg';
-import { Link } from 'react-router-dom';
 
 type UserType = User | Ong | Admin;
 
@@ -52,57 +50,54 @@ const UserNavBar = () => {
     }
   }
 
-  const NavBarLogo = () => {
-    return (
-      <div className={styles.logo}>
-        <Link to='/conta'>
-          <img src={NavLogo} alt="Logo" />
-        </Link>
-      </div>
-    );
-  };
+  const NavBarLogo = () => (
+    <div className={styles.logo}>
+      <Link to="/conta">
+        <img src={NavLogo} alt="Logo" />
+      </Link>
+    </div>
+  );
 
-  const NavBarOngsUrls = () => {
-    return (
-      <nav>
-        <ul>
-          <li className='b3'>
-            <Link to={'/conta/meus-eventos'}>Meus Eventos</Link>
-          </li>
-          <li className='b3'>
-            <Link to='/conta/criar-evento'>Criar Evento</Link>
-          </li>
-        </ul>
-      </nav>
-    );
-  };
+  const NavBarOngsUrls = () => (
+    <nav>
+      <ul>
+        <li className="b3">
+          <Link to="/conta/meus-eventos">Meus Eventos</Link>
+        </li>
+        <li className="b3">
+          <Link to="/conta/criar-evento">Criar Evento</Link>
+        </li>
+      </ul>
+    </nav>
+  );
 
-  const NavBarProfilePic = () => {
-    return (
-      <div className={styles.profile} onClick={openNav}>
-        {user && <img src={`http://localhost:3001/uploads/${user?.profilePic}`} alt="Foto de Perfil" />}
-      </div>
-    );
-  };
+  const NavBarProfilePic = () => (
+    <div className={styles.profile} onClick={openNav}>
+      {user && (
+        <img
+          src={`http://localhost:3001/uploads/${user?.profilePic}`}
+          alt="Foto de Perfil"
+        />
+      )}
+    </div>
+  );
 
-  const NavBarSideNav = () => {
-    return (
-      <div id="mySidenav" className={styles.sidenav}>
-        <a className="closebtn" onClick={closeNav}>&times;</a>
-        <a>Meu Perfil</a>
-        <a onClick={handleLogout}>Sair</a>
-      </div>
-    );
-  };
+  const NavBarSideNav = () => (
+    <div id="mySidenav" className={styles.sidenav}>
+      <a className="closebtn" onClick={closeNav}>
+        &times;
+      </a>
+      <a>Meu Perfil</a>
+      <a onClick={handleLogout}>Sair</a>
+    </div>
+  );
 
   return (
     <>
       <header className={styles.header}>
         <NavBarLogo />
         <div className={styles.content}>
-          {
-            role === 'ong' && <NavBarOngsUrls />
-          }
+          {role === 'ong' && <NavBarOngsUrls />}
           <NavBarProfilePic />
         </div>
       </header>

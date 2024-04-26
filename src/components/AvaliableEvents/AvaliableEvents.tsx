@@ -1,12 +1,10 @@
+import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
+import { Event } from '../../types';
 import AvaliableEventCard from '../AvaliableEventCard/AvaliableEventCard';
 
 import styles from './AvaliableEvents.module.css';
-
-import { Event } from '../../types';
-
-import { motion } from 'framer-motion';
 
 const AvaliableEvents = ({ events }: { events: Event[] }) => {
   const [width, setWidth] = useState(0);
@@ -19,15 +17,19 @@ const AvaliableEvents = ({ events }: { events: Event[] }) => {
   }, [width]);
 
   return (
-    <motion.section 
-      ref={carousel} 
-      className={styles.carousel} 
-      drag="x" whileTap={{ cursor: 'grabbing' }} 
-      dragConstraints={{right: 0, left: -width}}>
+    <motion.section
+      ref={carousel}
+      className={styles.carousel}
+      drag="x"
+      whileTap={{ cursor: 'grabbing' }}
+      dragConstraints={{ right: 0, left: -width }}
+    >
       <motion.div className={styles.inner}>
-        {events ? events.map((event) => (
-          <AvaliableEventCard event={event} key={event._id} />
-        )) : 'nenhum evento encontrado'}
+        {events
+          ? events.map((event) => (
+              <AvaliableEventCard event={event} key={event._id} />
+            ))
+          : 'nenhum evento encontrado'}
       </motion.div>
     </motion.section>
   );

@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { Ong } from '../types';
 
 const baseUrl = 'http://localhost:3001';
@@ -22,17 +23,33 @@ const getEventsByOng = async (id: string) => {
 };
 
 const getEventById = async (ongId: string, eventId: string) => {
-  const request = await axios.get(`${baseUrl}/ongs/${ongId}/events/${eventId}`, config);
+  const request = await axios.get(
+    `${baseUrl}/ongs/${ongId}/events/${eventId}`,
+    config,
+  );
   return request.data;
 };
 
-const updateOngEvent = async (idOng: string, idEvent: string, newObject: FormData, action: 'update' | 'delete') => {
-  const request = await axios.patch(`${baseUrl}/ongs/${idOng}/events/${idEvent}/${action}`, newObject, config);
+const updateOngEvent = async (
+  idOng: string,
+  idEvent: string,
+  newObject: FormData,
+  action: 'update' | 'delete',
+) => {
+  const request = await axios.patch(
+    `${baseUrl}/ongs/${idOng}/events/${idEvent}/${action}`,
+    newObject,
+    config,
+  );
   return request.data;
 };
 
 const createOngEvent = async (id: string, Obj: FormData) => {
-  const request = await axios.patch(`${baseUrl}/ongs/${id}/events`, Obj, config);
+  const request = await axios.patch(
+    `${baseUrl}/ongs/${id}/events`,
+    Obj,
+    config,
+  );
   return request.data;
 };
 
@@ -41,11 +58,18 @@ const update = async (id: string, newObject: Ong) => {
   return request.data;
 };
 
-const removeOngEvent = async (idOng: string, idEvent: string, action: 'update' | 'delete') => {
-  const request = await axios.patch(`${baseUrl}/ongs/${idOng}/events/${idEvent}/${action}`, {}, config);
+const removeOngEvent = async (
+  idOng: string,
+  idEvent: string,
+  action: 'update' | 'delete',
+) => {
+  const request = await axios.patch(
+    `${baseUrl}/ongs/${idOng}/events/${idEvent}/${action}`,
+    {},
+    config,
+  );
   return request.data;
 };
-
 
 export default {
   update,
@@ -55,5 +79,5 @@ export default {
   createOngEvent,
   setToken,
   updateOngEvent,
-  removeOngEvent
+  removeOngEvent,
 };

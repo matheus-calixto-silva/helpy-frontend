@@ -2,11 +2,9 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../contexts/AuthProvider/useAuth';
-
-import { Event, Skill } from '../../types';
-
 import ongService from '../../services/ongs';
 import userService from '../../services/users';
+import { Event, Skill } from '../../types';
 
 import styles from './EventTableList.module.css';
 
@@ -16,7 +14,10 @@ const EventTableList = () => {
 
   const fetchData = async () => {
     try {
-      const response = id && role === 'ong' ? await ongService.getEventsByOng(id) : await userService.getAllEvents();
+      const response =
+        id && role === 'ong'
+          ? await ongService.getEventsByOng(id)
+          : await userService.getAllEvents();
       setEvents(response);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -44,13 +45,13 @@ const EventTableList = () => {
 
   async function removeEvent(idOng: string, idEvent: string) {
     await ongService.removeOngEvent(idOng, idEvent, 'delete');
-    setEvents(events.filter(event => event._id !== idEvent));
+    setEvents(events.filter((event) => event._id !== idEvent));
   }
 
   return (
     <table className={styles.event_table}>
       <thead>
-        <tr className='b2'>
+        <tr className="b2">
           <th>Nome</th>
           <th>Data</th>
           <th>Habilidades</th>
@@ -59,18 +60,23 @@ const EventTableList = () => {
         </tr>
       </thead>
       <tbody>
-        {events && events.map(item => (
-          <tr className='b3' key={item._id}>
-            <td>{item.name}</td>
-            <td>{formateDate(item.date)}</td>
-            <td>{formateSkills(item.requiredSkills)}</td>
-            <td>{item.volunteers.length}/{item.maxVolunteers}</td>
-            <td>
-              <Link to={`/conta/meus-eventos/${item._id}`}>Ver detalhes</Link>
-              <a onClick={() => removeEvent(id!, item._id!)}>Excluir evento</a>
-            </td>
-          </tr>
-        ))}
+        {events &&
+          events.map((item) => (
+            <tr className="b3" key={item._id}>
+              <td>{item.name}</td>
+              <td>{formateDate(item.date)}</td>
+              <td>{formateSkills(item.requiredSkills)}</td>
+              <td>
+                {item.volunteers.length}/{item.maxVolunteers}
+              </td>
+              <td>
+                <Link to={`/conta/meus-eventos/${item._id}`}>Ver detalhes</Link>
+                <a onClick={() => removeEvent(id!, item._id!)}>
+                  Excluir evento
+                </a>
+              </td>
+            </tr>
+          ))}
       </tbody>
     </table>
   );

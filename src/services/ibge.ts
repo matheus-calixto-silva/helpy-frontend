@@ -7,13 +7,12 @@ const getAllUfs = async () => {
   return request.data;
 };
 
-const getAllCities= async (uf: string) => {
+const getAllCities = async (uf: string) => {
   const request = await axios.get(`${baseUrl}/${uf}/municipios`);
   return request.data;
 };
 
-
 export default {
   getAllUfs,
-  getAllCities
+  getAllCities,
 };

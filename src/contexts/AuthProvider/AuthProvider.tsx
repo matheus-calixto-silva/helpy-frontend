@@ -1,5 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 
+import { navigate } from '../../libs/navigate';
 import { IAuthProvider, IContext, IUser } from '../../types';
 
 import {
@@ -10,8 +11,6 @@ import {
   removeUserLocalStorage,
   setUserLocalStorage,
 } from './util';
-
-import { navigate } from '../../libs/navigate';
 
 export const AuthContext = createContext<IContext>({} as IContext);
 

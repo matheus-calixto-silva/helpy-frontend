@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { Admin } from '../types';
 
 const baseUrl = 'http://localhost:3001/';

@@ -1,12 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 
-import userService from '../../services/users';
-import ongService from '../../services/ongs';
-
-import AvaliableEvents from '../AvaliableEvents/AvaliableEvents';
-
-import { Event } from '../../types';
 import { useAuth } from '../../contexts/AuthProvider/useAuth';
+import ongService from '../../services/ongs';
+import userService from '../../services/users';
+import { Event } from '../../types';
+import AvaliableEvents from '../AvaliableEvents/AvaliableEvents';
 
 import styles from './Volunteer.module.css';
 
@@ -16,7 +14,10 @@ const Volunteer = () => {
 
   const fetchData = async () => {
     try {
-      const response = id && role === 'ong' ? await ongService.getEventsByOng(id) : await userService.getAllEvents();
+      const response =
+        id && role === 'ong'
+          ? await ongService.getEventsByOng(id)
+          : await userService.getAllEvents();
       setEvents(response);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -29,7 +30,7 @@ const Volunteer = () => {
 
   return (
     <section className={styles.container}>
-      <AvaliableEvents events={events}/>
+      <AvaliableEvents events={events} />
     </section>
   );
 };

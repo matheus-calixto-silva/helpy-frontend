@@ -1,14 +1,13 @@
 import { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthProvider/useAuth';
 
-import Input from '../Input/Input';
-import Button from '../Button/Button';
-import useCheckMobileScreen from '../../hooks/useCheckMobileScreen';
-
-import LoginImg from '../../assets/login.jpg';
 import ArrowRed from '../../assets/arrow-left-red.svg';
 import ArrowWhite from '../../assets/arrow-left-white.svg';
+import LoginImg from '../../assets/login.jpg';
+import { useAuth } from '../../contexts/AuthProvider/useAuth';
+import useCheckMobileScreen from '../../hooks/useCheckMobileScreen';
+import Button from '../Button/Button';
+import Input from '../Input/Input';
 
 import styles from './Login.module.css';
 
@@ -31,8 +30,11 @@ const Login = () => {
 
   return (
     <section className={styles.login}>
-      <div className={styles.image_wrapper} style={{ backgroundImage: `url(${LoginImg})` }}>
-        <div className={styles.image_layer}></div>
+      <div
+        className={styles.image_wrapper}
+        style={{ backgroundImage: `url(${LoginImg})` }}
+      >
+        <div className={styles.image_layer} />
       </div>
       <div className={styles.login_form}>
         <h2 className={styles.title}>Login</h2>
@@ -63,23 +65,23 @@ const Login = () => {
           </Button>
         </form>
         <div className={styles.cadastro}>
-          <p className='b3'>Ainda não possui conta?{' '}
-            <a className={`b3 ${styles.button}`} href={'/login/criar'}>
+          <p className="b3">
+            Ainda não possui conta?{' '}
+            <a className={`b3 ${styles.button}`} href="/login/criar">
               cadastre - se
             </a>
           </p>
         </div>
       </div>
-      {useCheckMobileScreen()
-        ?
-        <Link className={styles.arrow} to={'/home'}>
-          <img src={ArrowRed} alt='icone de seta' />
+      {useCheckMobileScreen() ? (
+        <Link className={styles.arrow} to="/home">
+          <img src={ArrowRed} alt="icone de seta" />
         </Link>
-        :
-        <Link className={styles.arrow} to={'/home'}>
-          <img src={ArrowWhite} alt='icone de seta' />
+      ) : (
+        <Link className={styles.arrow} to="/home">
+          <img src={ArrowWhite} alt="icone de seta" />
         </Link>
-      }
+      )}
     </section>
   );
 };

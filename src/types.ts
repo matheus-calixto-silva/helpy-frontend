@@ -1,4 +1,5 @@
 import { ChangeEvent, FocusEvent } from 'react';
+
 export interface Admin {
   _id: string;
   firstname: string;
@@ -18,7 +19,7 @@ export interface Ong extends Admin {
   address: string;
   cnpj: string;
   maxEvents: number;
-  events: Event[]
+  events: Event[];
 }
 
 export interface User extends Admin {
@@ -59,7 +60,7 @@ export interface IUser {
 }
 export interface IContext extends IUser {
   handleLogin: (username: string, password: string) => Promise<void>;
-  handleLogout: () => void
+  handleLogout: () => void;
 }
 export interface IAuthProvider {
   children: JSX.Element;

@@ -13,5 +13,5 @@ export const getAllSkills = async (token: string) => {
 };
 
 export default {
-  getAllSkills
+  getAllSkills,
 };

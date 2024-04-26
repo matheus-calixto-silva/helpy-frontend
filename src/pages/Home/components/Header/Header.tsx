@@ -1,6 +1,5 @@
-import { navigate } from '../../../../libs/navigate';
-
 import Logo from '../../../../assets/logo-white.svg';
+import { navigate } from '../../../../libs/navigate';
 
 import styles from './Header.module.css';
 
@@ -13,7 +12,7 @@ const HomeHeader = () => {
     <nav className={styles.navbar}>
       <div className={styles.container}>
         <div>
-          <img className={styles.logo} src={Logo} alt='Helpy logo' />
+          <img className={styles.logo} src={Logo} alt="Helpy logo" />
         </div>
         <div className={styles.buttons}>
           <button

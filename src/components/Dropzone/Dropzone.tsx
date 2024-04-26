@@ -18,7 +18,7 @@ const Dropzone = ({ onFileUploaded }: IProps) => {
       setSelectedFileUrl(fileurl);
       onFileUploaded(file);
     },
-    [onFileUploaded]
+    [onFileUploaded],
   );
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -32,12 +32,12 @@ const Dropzone = ({ onFileUploaded }: IProps) => {
 
   return (
     <div className={styles.dropzone} {...getRootProps()}>
-      <input {...getInputProps()} name='photo' accept='image/*' />
+      <input {...getInputProps()} name="photo" accept="image/*" />
 
       {selectedFileUrl ? (
-        <img src={selectedFileUrl} alt='Event thumbnail' />
+        <img src={selectedFileUrl} alt="Event thumbnail" />
       ) : (
-        <p className='b3'>Adicione uma imagem do evento</p>
+        <p className="b3">Adicione uma imagem do evento</p>
       )}
     </div>
   );

@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { User } from '../types';
 
 const baseUrl = 'http://localhost:3001';
@@ -27,7 +28,11 @@ const getAvaliableEvent = async (eventId: string) => {
 };
 
 const joinEvent = async (userId: string, eventId: string) => {
-  const request = await axios.patch(`${baseUrl}/users/${userId}/events/${eventId}`, {}, config);
+  const request = await axios.patch(
+    `${baseUrl}/users/${userId}/events/${eventId}`,
+    {},
+    config,
+  );
   return request.data;
 };
 

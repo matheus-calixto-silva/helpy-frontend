@@ -1,39 +1,38 @@
-import loginService from '../../services/login';
-import userService from '../../services/users';
-import ongService from '../../services/ongs';
 import adminService from '../../services/admins';
-
+import loginService from '../../services/login';
+import ongService from '../../services/ongs';
+import userService from '../../services/users';
 import { IUser } from '../../types';
 
 export function addTokenByUserType(role: string, token: string) {
   switch (role) {
-  case 'user':
-    userService.setToken(token);
-    break;
-  case 'admin':
-    adminService.setToken(token);
-    break;
-  case 'ong':
-    ongService.setToken(token);
-    break;
-  default:
-    console.log('Tipo de usuário desconhecido.');
+    case 'user':
+      userService.setToken(token);
+      break;
+    case 'admin':
+      adminService.setToken(token);
+      break;
+    case 'ong':
+      ongService.setToken(token);
+      break;
+    default:
+      console.log('Tipo de usuário desconhecido.');
   }
 }
 
 export function removeTokenByUserType(role: string) {
   switch (role) {
-  case 'user':
-    userService.setToken('');
-    break;
-  case 'admin':
-    adminService.setToken('');
-    break;
-  case 'ong':
-    ongService.setToken('');
-    break;
-  default:
-    console.log('Tipo de usuário desconhecido.');
+    case 'user':
+      userService.setToken('');
+      break;
+    case 'admin':
+      adminService.setToken('');
+      break;
+    case 'ong':
+      ongService.setToken('');
+      break;
+    default:
+      console.log('Tipo de usuário desconhecido.');
   }
 }
 

@@ -1,10 +1,8 @@
 import { useAuth } from '../../contexts/AuthProvider/useAuth';
-
-import UserNavBar from '../UserNavBar/UserNavBar';
-
 import Admin from '../Admin/Admin';
-import VolunteerRoutes from '../VolunteerRoutes/VolunteerRoutes';
 import OngRoutes from '../OngRoutes/OngRoutes';
+import UserNavBar from '../UserNavBar/UserNavBar';
+import VolunteerRoutes from '../VolunteerRoutes/VolunteerRoutes';
 
 const Profile = () => {
   const auth = useAuth();
