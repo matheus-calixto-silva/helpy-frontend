@@ -3,12 +3,12 @@ import { createContext, useEffect, useState } from 'react';
 import { IAuthProvider, IContext, IUser } from '../../types';
 
 import {
+  addTokenByUserType,
   getUserLocalStorage,
   loginRequest,
+  removeTokenByUserType,
   removeUserLocalStorage,
   setUserLocalStorage,
-  addTokenByUserType,
-  removeTokenByUserType
 } from './util';
 
 import useNavigation from '../../navigate';
@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
       navigate('/conta');
     }
 
+    navigate('/home');
   }, []);
 
   async function handleLogin(username: string, password: string) {
