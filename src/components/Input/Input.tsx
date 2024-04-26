@@ -1,9 +1,16 @@
-import { FC } from 'react';
 import styles from './Input.module.css';
 
 import { InputProps } from '../../types';
 
-const Input: FC<InputProps> = ({ label, type, name, value, onChange, error, onBlur }) => {
+const Input = ({
+  label,
+  type,
+  name,
+  value,
+  onChange,
+  error,
+  onBlur,
+}: InputProps) => {
   return (
     <div className={styles.wrapper}>
       <label className={`b3 ${styles.label}`} htmlFor={name}>
