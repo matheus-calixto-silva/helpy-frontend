@@ -5,7 +5,9 @@ const Admin = () => {
   return (
     <div>
       <h1>Admin</h1>
-      <button onClick={auth.handleLogout}>logout</button>
+      <button type="button" onClick={auth.handleLogout}>
+        logout
+      </button>
     </div>
   );
 };
