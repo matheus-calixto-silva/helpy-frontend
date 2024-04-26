@@ -6,8 +6,15 @@ import { Event } from '../../types';
 
 import styles from './AvaliableEventCard.module.css';
 
-const AvaliableEventCard = ({ event }: { event: Event }) => {
-  const eventDate = new Date(event.date);
+const AvaliableEventCard = ({ _id, name, date, address, eventPic }: Event) => {
+  function formateDate(dateToFormat: Date) {
+    const inputDate = new Date(dateToFormat);
+    const formattedDate = inputDate.toLocaleDateString('en-GB');
+
+    return formattedDate;
+  }
+
+  const eventDate = new Date(date);
   const day = formateDate(eventDate).substring(0, 2);
   const month = eventDate
     .toLocaleDateString('pt-BR', {
@@ -16,18 +23,11 @@ const AvaliableEventCard = ({ event }: { event: Event }) => {
     .substring(0, 3)
     .toUpperCase();
 
-  function formateDate(date: Date) {
-    const inputDate = new Date(date);
-    const formattedDate = inputDate.toLocaleDateString('en-GB');
-
-    return formattedDate;
-  }
-
   return (
     <div
       className={styles.social_card}
       style={{
-        backgroundImage: `url(http://localhost:3001/uploads/${event.eventPic})`,
+        backgroundImage: `url(http://localhost:3001/uploads/${eventPic})`,
       }}
     >
       <div className={styles.social_card_content}>
@@ -38,13 +38,13 @@ const AvaliableEventCard = ({ event }: { event: Event }) => {
         <div className={styles.social_card_hour_location}>
           <img src={LocationIcon} alt="icone de gps" />
           <p className="b3">
-            {event.address.city} - {event.address.uf}
+            {address.city} - {address.uf}
           </p>
           <img src={ClockIcon} alt="icone de relógio" />
           <p className="b3">07:00</p>
         </div>
-        <h6>{event.name}</h6>
-        <Link to={`/conta/evento-detalhes/${event._id}`} className="b3">
+        <h6>{name}</h6>
+        <Link to={`/conta/evento-detalhes/${_id}`} className="b3">
           Detalhes
         </Link>
       </div>
