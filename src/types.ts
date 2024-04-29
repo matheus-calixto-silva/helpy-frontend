@@ -1,6 +1,28 @@
 import { ChangeEvent, FocusEvent } from 'react';
 
-export interface Admin {
+type role = 'admin' | 'user' | 'ong';
+
+export interface ICategory {
+  name: string;
+  description: string;
+  id: string;
+}
+
+export interface ISkill {
+  name: string;
+  category: ICategory;
+  _id: string;
+}
+
+export interface IAddress {
+  street: string;
+  city: string;
+  uf: string;
+  latitude: string;
+  longitude: string;
+}
+
+export interface IAdmin {
   _id: string;
   firstname: string;
   lastname: string;
@@ -15,58 +37,50 @@ export interface Admin {
   role: role;
 }
 
-export interface Ong extends Admin {
-  address: string;
-  cnpj: string;
-  maxEvents: number;
-  events: Event[];
+export interface IUser extends IAdmin {
+  skills: ISkill[];
 }
 
-export interface User extends Admin {
-  skills: Skill[];
-}
-export interface Event {
+export interface IEvent {
   _id?: string;
-  address: Address;
+  address: IAddress;
   name: string;
   description: string;
   date: Date;
-  requiredSkills: Skill[];
+  requiredSkills: ISkill[];
   maxVolunteers: number;
-  volunteers: User[];
+  volunteers: IUser[];
   eventPic: string;
   created_at: Date;
   updated_at: Date;
 }
 
-type role = 'admin' | 'user' | 'ong';
+export interface IOng extends IAdmin {
+  address: string;
+  cnpj: string;
+  maxEvents: number;
+  events: IEvent[];
+}
 
-export interface Category {
-  name: string;
-  description: string;
-  id: string;
-}
-export interface Skill {
-  name: string;
-  category: Category;
-  _id: string;
-}
-export interface IUser {
+export interface ILoggedUSerData {
   username?: string;
   password?: string;
   token?: string;
   role?: string;
   id?: string;
 }
-export interface IContext extends IUser {
+
+export interface IContext extends ILoggedUSerData {
   handleLogin: (username: string, password: string) => Promise<void>;
   handleLogout: () => void;
 }
+
 export interface IAuthProvider {
+  // eslint-disable-next-line no-undef
   children: JSX.Element;
 }
 
-export interface InputProps {
+export interface IInputProps {
   label: string;
   type: string;
   name: string;
@@ -76,46 +90,36 @@ export interface InputProps {
   error?: string;
 }
 
-export interface Address {
-  street: string;
-  city: string;
-  uf: string;
-  latitude: string;
-  longitude: string;
-}
-
-export interface City {
-  id: number;
-  nome: string;
-  microrregiao: Microrregiao;
-}
-
-export interface Microrregiao {
-  id: number;
-  nome: string;
-  mesorregiao: Mesorregiao;
-}
-
-export interface Mesorregiao {
-  id: number;
-  nome: string;
-  UF: Uf;
-}
-
-export interface Uf {
-  id: number;
-  sigla: string;
-  nome: string;
-  regiao?: Regiao;
-}
-
-export interface Regiao {
+export interface IRegiao {
   id: number;
   sigla: string;
   nome: string;
 }
 
-export interface DatePickerComponentProps {
+export interface IUf {
+  id: number;
+  sigla: string;
+  nome: string;
+  regiao?: IRegiao;
+}
+
+export interface IMesorregiao {
+  id: number;
+  nome: string;
+  UF: IUf;
+}
+export interface IMicrorregiao {
+  id: number;
+  nome: string;
+  mesorregiao: IMesorregiao;
+}
+export interface ICity {
+  id: number;
+  nome: string;
+  microrregiao: IMicrorregiao;
+}
+
+export interface IDatePickerComponentProps {
   selectedDate: Date | null;
   handleDateChange: (date: Date | null) => void;
 }
