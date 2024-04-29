@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
-import { Event } from '../../types';
+import { IEvent } from '../../types';
 import AvaliableEventCard from '../AvaliableEventCard/AvaliableEventCard';
 
 import styles from './AvaliableEvents.module.css';
 
-const AvaliableEvents = ({ events }: { events: Event[] }) => {
+const AvaliableEvents = ({ events }: { events: IEvent[] }) => {
   const [width, setWidth] = useState(0);
   const carousel = useRef<HTMLElement | null>(null);
 
@@ -27,6 +27,7 @@ const AvaliableEvents = ({ events }: { events: Event[] }) => {
       <motion.div className={styles.inner}>
         {events
           ? events.map((event) => (
+              // eslint-disable-next-line no-underscore-dangle
               <AvaliableEventCard event={event} key={event._id} />
             ))
           : 'nenhum evento encontrado'}
