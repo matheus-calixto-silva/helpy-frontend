@@ -1,16 +1,16 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
-import 'leaflet/dist/leaflet.css';
-import DatePicker, { registerLocale } from 'react-datepicker';
-import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
-import MultiSelect from 'multiselect-react-dropdown';
 import pt from 'date-fns/locale/pt-BR';
+import 'leaflet/dist/leaflet.css';
+import MultiSelect from 'multiselect-react-dropdown';
+import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
 
 import { useParams } from 'react-router-dom';
 
 import { useAuth } from '../../contexts/AuthProvider/useAuth';
-import { navigate } from '../../libs/navigate';
+import useNavigation from '../../libs/navigate';
 import ongService from '../../services/ongs';
 import { Skill } from '../../types';
 import Button from '../Button/Button';
@@ -23,6 +23,7 @@ registerLocale('pt-BR', pt);
 
 const EventForm = () => {
   const { id, token } = useAuth();
+  const navigate = useNavigation();
   const routeParams = useParams();
   const { eventId } = routeParams;
   const path = window.location.pathname;

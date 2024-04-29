@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import { navigate } from '../../libs/navigate';
+import useNavigation from '../../libs/navigate';
 import ongService from '../../services/ongs';
 import { Event } from '../../types';
 
@@ -9,6 +9,7 @@ import styles from './EventDetails.module.css';
 
 const EventDetails = () => {
   const [event, setEvent] = useState<Event>();
+  const navigate = useNavigation();
   const routeParams = useParams();
   const { eventId } = routeParams;
   const ong = JSON.parse(localStorage.getItem('user') || '');

@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 
-import { navigate } from '../../libs/navigate';
+import useNavigation from '../../libs/navigate';
 import { IAuthProvider, IContext, IUser } from '../../types';
 
 import {
@@ -16,6 +16,7 @@ export const AuthContext = createContext<IContext>({} as IContext);
 
 export const AuthProvider = ({ children }: IAuthProvider) => {
   const [user, setUser] = useState<IUser | null>();
+  const navigate = useNavigation();
 
   useEffect(() => {
     const user = getUserLocalStorage();

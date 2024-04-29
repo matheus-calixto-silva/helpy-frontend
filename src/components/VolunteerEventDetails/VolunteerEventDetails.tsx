@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { navigate } from '../../libs/navigate';
+import useNavigation from '../../libs/navigate';
 import userService from '../../services/users';
 import { Event } from '../../types';
 
@@ -9,6 +9,7 @@ import styles from './VolunteerEventDetails.module.css';
 
 const VolunteerEventDetails = () => {
   const [event, setEvent] = useState<Event>();
+  const navigate = useNavigation();
   const routeParams = useParams();
   const { eventId } = routeParams;
   const volunteer = JSON.parse(localStorage.getItem('user') || '');

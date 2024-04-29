@@ -1,9 +1,11 @@
 import Logo from '../../../../assets/logo-white.svg';
-import { navigate } from '../../../../libs/navigate';
+import useNavigation from '../../../../libs/navigate';
 
 import styles from './Header.module.css';
 
 const HomeHeader = () => {
+  const navigate = useNavigation();
+
   function handleClick() {
     navigate('/login');
   }
