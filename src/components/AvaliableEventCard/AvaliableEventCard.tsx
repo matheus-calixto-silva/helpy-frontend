@@ -2,11 +2,11 @@ import { Link } from 'react-router-dom';
 
 import ClockIcon from '../../assets/clock - filled.svg';
 import LocationIcon from '../../assets/location - filled.svg';
-import { Event } from '../../types';
+import { IEvent } from '../../types';
 
 import styles from './AvaliableEventCard.module.css';
 
-const AvaliableEventCard = ({ _id, name, date, address, eventPic }: Event) => {
+const AvaliableEventCard = ({ event }: { event: IEvent }) => {
   function formateDate(dateToFormat: Date) {
     const inputDate = new Date(dateToFormat);
     const formattedDate = inputDate.toLocaleDateString('en-GB');
@@ -14,6 +14,7 @@ const AvaliableEventCard = ({ _id, name, date, address, eventPic }: Event) => {
     return formattedDate;
   }
 
+  const { _id, name, date, address, eventPic } = event;
   const eventDate = new Date(date);
   const day = formateDate(eventDate).substring(0, 2);
   const month = eventDate
