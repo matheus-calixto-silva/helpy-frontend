@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useEffect, useMemo, useState } from 'react';
 
 import { IAuthProvider, IContext, IUser } from '../../../types';
 import useNavigation from '../../libs/navigate';
@@ -19,16 +19,16 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
   const navigate = useNavigation();
 
   useEffect(() => {
-    const user = getUserLocalStorage();
+    const userLocalStorage = getUserLocalStorage();
 
-    if (user) {
-      setUser(user);
-      addTokenByUserType(user.role, user.token);
+    if (userLocalStorage) {
+      setUser(userLocalStorage);
+      addTokenByUserType(userLocalStorage.role, userLocalStorage.token);
       navigate('/conta');
     }
 
     navigate('/home');
-  }, []);
+  }, [navigate]);
 
   async function handleLogin(username: string, password: string) {
     const response = await loginRequest(username, password);
@@ -46,9 +46,16 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
     navigate('/login');
   }
 
+  const contextValue = useMemo(
+    () => ({
+      ...user,
+      handleLogin,
+      handleLogout,
+    }),
+    [user],
+  );
+
   return (
-    <AuthContext.Provider value={{ ...user, handleLogin, handleLogout }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };
