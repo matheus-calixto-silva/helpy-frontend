@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { AuthProvider } from './app/contexts/AuthProvider/AuthProvider';
-import Login from './components/Login/Login';
-import NotFound from './components/NotFound/NotFound';
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
-import User from './components/User/User';
-import Home from './pages/Home/Home';
+import { AuthProvider } from '@app/contexts/AuthProvider/AuthProvider';
+import Login from '@views/components/Login/Login';
+import NotFound from '@views/components/NotFound/NotFound';
+import ProtectedRoute from '@views/components/ProtectedRoute/ProtectedRoute';
+import User from '@views/components/User/User';
+import Home from '@views/pages/Home/Home';
 
 const AppRoutes = () => (
   <BrowserRouter>
