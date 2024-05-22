@@ -3,9 +3,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
-import useNavigation from '../../app/libs/navigate';
-import ongService from '../../app/services/ongs';
-import { IEvent } from '../../types';
+import useNavigation from '@app/libs/navigate';
+import ongService from '@app/services/ongs';
+
+import { IEvent } from '../../../types';
 
 import styles from './EventDetails.module.css';
 

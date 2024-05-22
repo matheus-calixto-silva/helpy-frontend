@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useAuth } from '../../app/contexts/AuthProvider/useAuth';
+import { useAuth } from '@app/contexts/AuthProvider/useAuth';
 
 const ProtectedLayout = ({ children }: { children: JSX.Element }) => {
   const { token, username } = useAuth();

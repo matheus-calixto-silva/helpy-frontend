@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAuth } from '../../app/contexts/AuthProvider/useAuth';
-import adminService from '../../app/services/admins';
-import ongService from '../../app/services/ongs';
-import userService from '../../app/services/users';
+import { useAuth } from '@app/contexts/AuthProvider/useAuth';
+import adminService from '@app/services/admins';
+import ongService from '@app/services/ongs';
+import userService from '@app/services/users';
+
+import { IAdmin, IOng, IUser } from '../../../types';
 import NavLogo from '../../assets/logo-red.svg';
-import { Admin, Ong, User } from '../../types';
 
 import styles from './UserNavBar.module.css';
 
-type UserType = User | Ong | Admin;
+type UserType = IUser | IOng | IAdmin;
 
 const UserNavBar = () => {
   const [user, setUser] = useState<UserType>();

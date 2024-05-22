@@ -1,4 +1,5 @@
-import { useAuth } from '../../app/contexts/AuthProvider/useAuth';
+import { useAuth } from '@app/contexts/AuthProvider/useAuth';
+
 import Admin from '../Admin/Admin';
 import OngRoutes from '../OngRoutes/OngRoutes';
 import UserNavBar from '../UserNavBar/UserNavBar';

@@ -1,12 +1,13 @@
+/* eslint-disable react/button-has-type */
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 
 import styles from './Button.module.css';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
 }
 
-const Button = ({ children, ...props }: ButtonProps) => (
+const Button = ({ children, ...props }: IButtonProps) => (
   <button {...props} className={styles.button}>
     {children}
   </button>

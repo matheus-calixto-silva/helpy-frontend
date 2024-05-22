@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAuth } from '../../app/contexts/AuthProvider/useAuth';
-import ongService from '../../app/services/ongs';
-import userService from '../../app/services/users';
-import { Event, Skill } from '../../types';
+import { useAuth } from '@app/contexts/AuthProvider/useAuth';
+import ongService from '@app/services/ongs';
+import userService from '@app/services/users';
+
+import { IEvent, ISkill } from '../../../types';
 
 import styles from './EventTableList.module.css';
 
 const EventTableList = () => {
   const { id, role } = useAuth();
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<IEvent[]>([]);
 
   const fetchData = async () => {
     try {
@@ -35,7 +36,7 @@ const EventTableList = () => {
     return formattedDate;
   }
 
-  function formateSkills(skills: Skill[]) {
+  function formateSkills(skills: ISkill[]) {
     if (skills.length === 1) {
       return `${skills[0].name}`;
     }

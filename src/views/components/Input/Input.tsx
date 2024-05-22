@@ -1,4 +1,4 @@
-import { InputProps } from '../../types';
+import { IInputProps } from '../../../types';
 
 import styles from './Input.module.css';
 
@@ -10,7 +10,7 @@ const Input = ({
   onChange,
   error,
   onBlur,
-}: InputProps) => (
+}: IInputProps) => (
   <div className={styles.wrapper}>
     <label className={`b3 ${styles.label}`} htmlFor={name}>
       {label}

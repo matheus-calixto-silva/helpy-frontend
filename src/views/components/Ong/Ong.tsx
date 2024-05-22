@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAuth } from '../../app/contexts/AuthProvider/useAuth';
-import ongService from '../../app/services/ongs';
-import { Event } from '../../types';
+import { useAuth } from '@app/contexts/AuthProvider/useAuth';
+import ongService from '@app/services/ongs';
+
+import { IEvent } from '../../../types';
 
 import styles from './Ong.module.css';
 
 const Ong = () => {
   const { id, role } = useAuth();
-  const [events, setEvents] = useState<Event[]>();
-  const [event, setEvent] = useState<Event>();
+  const [events, setEvents] = useState<IEvent[]>();
+  const [event, setEvent] = useState<IEvent>();
   let totalVolunteers = 0;
 
-  const countAllEventVolunteers = (events: Event[]) => {
+  const countAllEventVolunteers = (events: IEvent[]) => {
     events.map((event) => (totalVolunteers += event?.volunteers.length));
   };
 
@@ -27,7 +28,7 @@ const Ong = () => {
 
       countAllEventVolunteers(response);
 
-      response.map((event: Event) => {
+      response.map((event: IEvent) => {
         const eventDate = new Date(event.date);
         if (eventDate >= currentDate) {
           closestEvent = event;

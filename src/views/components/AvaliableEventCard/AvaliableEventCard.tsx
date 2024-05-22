@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
+import { IEvent } from '../../../types';
 import ClockIcon from '../../assets/clock - filled.svg';
 import LocationIcon from '../../assets/location - filled.svg';
-import { IEvent } from '../../types';
 
 import styles from './AvaliableEventCard.module.css';
 

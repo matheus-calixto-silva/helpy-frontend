@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import useNavigation from '../../app/libs/navigate';
-import userService from '../../app/services/users';
-import { Event } from '../../types';
+import useNavigation from '@app/libs/navigate';
+import userService from '@app/services/users';
+
+import { IEvent } from '../../../types';
 
 import styles from './VolunteerEventDetails.module.css';
 
 const VolunteerEventDetails = () => {
-  const [event, setEvent] = useState<Event>();
+  const [event, setEvent] = useState<IEvent>();
   const navigate = useNavigation();
   const routeParams = useParams();
   const { eventId } = routeParams;

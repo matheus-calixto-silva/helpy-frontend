@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 
-import { IEvent } from '../../types';
+import { IEvent } from '../../../types';
 import AvaliableEventCard from '../AvaliableEventCard/AvaliableEventCard';
 
 import styles from './AvaliableEvents.module.css';

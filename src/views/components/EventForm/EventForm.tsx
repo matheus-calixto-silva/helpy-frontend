@@ -7,10 +7,11 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
 import { useParams } from 'react-router-dom';
 
-import { useAuth } from '../../app/contexts/AuthProvider/useAuth';
-import useNavigation from '../../app/libs/navigate';
-import ongService from '../../app/services/ongs';
-import { Skill } from '../../types';
+import { useAuth } from '@app/contexts/AuthProvider/useAuth';
+import useNavigation from '@app/libs/navigate';
+import ongService from '@app/services/ongs';
+
+import { ISkill } from '../../../types';
 import Button from '../Button/Button';
 import Dropzone from '../Dropzone/Dropzone';
 
@@ -28,8 +29,8 @@ const EventForm = () => {
 
   const [ufs, setUfs] = useState<string[]>([]);
   const [cities, setCities] = useState<string[]>([]);
-  const [skills, setSkills] = useState<Skill[]>([]);
-  const [selectedSkills, setSelectedSkills] = useState<Skill[]>([]);
+  const [skills, setSkills] = useState<ISkill[]>([]);
+  const [selectedSkills, setSelectedSkills] = useState<ISkill[]>([]);
   const [selectedUf, setSelectedUf] = useState('0');
   const [selectedCity, setSelectedCity] = useState('0');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -158,7 +159,7 @@ const EventForm = () => {
     setSelectedDate(date);
   }
 
-  function handleSelect(selectedList: Skill[]) {
+  function handleSelect(selectedList: ISkill[]) {
     setSelectedSkills(selectedList);
   }
 

@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
 
-import { useAuth } from '../../app/contexts/AuthProvider/useAuth';
-import ongService from '../../app/services/ongs';
-import userService from '../../app/services/users';
-import { Event } from '../../types';
+import { useAuth } from '@app/contexts/AuthProvider/useAuth';
+import ongService from '@app/services/ongs';
+import userService from '@app/services/users';
+
+import { IEvent } from '../../../types';
 import AvaliableEvents from '../AvaliableEvents/AvaliableEvents';
 
 import styles from './Volunteer.module.css';
 
 const Volunteer = () => {
   const { id, role } = useAuth();
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<IEvent[]>([]);
 
   const fetchData = async () => {
     try {
