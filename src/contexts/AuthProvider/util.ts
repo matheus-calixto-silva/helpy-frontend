@@ -1,8 +1,9 @@
+/* eslint-disable no-console */
 import adminService from '../../services/admins';
 import loginService from '../../services/login';
 import ongService from '../../services/ongs';
 import userService from '../../services/users';
-import { IUser } from '../../types';
+import { ILoggedUSerData } from '../../types';
 
 export function addTokenByUserType(role: string, token: string) {
   switch (role) {
@@ -36,7 +37,7 @@ export function removeTokenByUserType(role: string) {
   }
 }
 
-export function setUserLocalStorage(user: IUser | null) {
+export function setUserLocalStorage(user: ILoggedUSerData | null) {
   localStorage.setItem('user', JSON.stringify(user));
 }
 
