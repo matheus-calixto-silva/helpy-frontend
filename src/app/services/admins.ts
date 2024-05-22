@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Admin } from '../../types';
+import { IAdmin } from '../../types';
 
 const baseUrl = 'http://localhost:3001/';
 
@@ -17,7 +17,7 @@ const getById = async (id: string) => {
   return request.data;
 };
 
-const update = async (id: string, newObject: Admin) => {
+const update = async (id: string, newObject: IAdmin) => {
   const request = await axios.put(`${baseUrl}/admins/${id}`, newObject, config);
   return request.data;
 };

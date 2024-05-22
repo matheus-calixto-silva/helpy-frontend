@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { User } from '../../types';
+import { IUser } from '../../types';
 
 const baseUrl = 'http://localhost:3001';
 
@@ -36,7 +36,7 @@ const joinEvent = async (userId: string, eventId: string) => {
   return request.data;
 };
 
-const update = async (id: string, newObject: User) => {
+const update = async (id: string, newObject: IUser) => {
   const request = await axios.put(`${baseUrl}/users/${id}`, newObject, config);
   return request.data;
 };

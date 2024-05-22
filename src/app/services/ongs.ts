@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Ong } from '../../types';
+import { IOng } from '../../types';
 
 const baseUrl = 'http://localhost:3001';
 
@@ -53,7 +53,7 @@ const createOngEvent = async (id: string, Obj: FormData) => {
   return request.data;
 };
 
-const update = async (id: string, newObject: Ong) => {
+const update = async (id: string, newObject: IOng) => {
   const request = await axios.put(`${baseUrl}/ongs/${id}`, newObject, config);
   return request.data;
 };
