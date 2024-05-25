@@ -25,10 +25,10 @@ export const AuthProvider = ({ children }: IAuthProvider) => {
       setUser(userLocalStorage);
       addTokenByUserType(userLocalStorage.role, userLocalStorage.token);
       navigate('/conta');
+    } else {
+      navigate('/home');
     }
-
-    navigate('/home');
-  }, [navigate]);
+  }, []);
 
   async function handleLogin(username: string, password: string) {
     const response = await loginRequest(username, password);
