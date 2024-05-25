@@ -1,4 +1,5 @@
-import useNavigation from '../../../../app/libs/navigate';
+import useNavigation from '@app/libs/navigate';
+
 import Logo from '../../../../assets/logo-white.svg';
 
 import styles from './Header.module.css';
@@ -18,12 +19,13 @@ const HomeHeader = () => {
         </div>
         <div className={styles.buttons}>
           <button
+            type="button"
             className={`b3 ${styles.button_primary}`}
             onClick={handleClick}
           >
             Entrar
           </button>
-          <button className={`b3 ${styles.button_secondary}`}>
+          <button type="button" className={`b3 ${styles.button_secondary}`}>
             Cadastre-se
           </button>
         </div>
