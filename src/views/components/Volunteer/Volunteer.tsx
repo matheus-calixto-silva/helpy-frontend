@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { useAuth } from '@app/contexts/AuthProvider/useAuth';
+import { useAuth } from '@app/hooks/useAuth';
 import ongService from '@app/services/ongs';
 import userService from '@app/services/users';
 

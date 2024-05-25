@@ -7,7 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
 import { useParams } from 'react-router-dom';
 
-import { useAuth } from '@app/contexts/AuthProvider/useAuth';
+import { useAuth } from '@app/hooks/useAuth';
 import useNavigation from '@app/libs/navigate';
 import ongService from '@app/services/ongs';
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAuth } from '@app/contexts/AuthProvider/useAuth';
+import { useAuth } from '@app/hooks/useAuth';
 import ongService from '@app/services/ongs';
 
 import { IEvent } from '../../../types';

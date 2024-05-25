@@ -1,4 +1,4 @@
-import { useAuth } from '@app/contexts/AuthProvider/useAuth';
+import { useAuth } from '@app/hooks/useAuth';
 import UserNavBar from '@views/components/UserNavBar/UserNavBar';
 
 import AdminRoutes from './admins';

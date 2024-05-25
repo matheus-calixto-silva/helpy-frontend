@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAuth } from '@app/contexts/AuthProvider/useAuth';
+import { useAuth } from '@app/hooks/useAuth';
 import useCheckMobileScreen from '@app/hooks/useCheckMobileScreen';
 
 import ArrowRed from '../../assets/arrow-left-red.svg';
